@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Workspace</title>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>AI Workspace</h1>
+
+        <div>
+            <span>Admin User</span>
+            
+        </div>
+
+    </header>
+
+    <div>
+
+        <aside>
+
+            <h2>AI Workspace</h2>
+
+            <nav>
+                <ul>
+
+                    <li>
+                        <a href="#">Tableau de bord</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Chat</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Résumé de texte</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Classification</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Traduction</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Historique</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </aside>
+
+        <main>
+
+            <section>
+
+                <h2>Tableau de bord</h2>
+
+                <p>
+                    Bienvenue sur votre espace de travail intelligent.
+                </p>
+
+            </section>
+
+            <section>
+
+                <article>
+                    <h3>Nombre de jeux de données</h3>
+                    <strong id="dataset-count"></strong>
+                    <span id="dataset-evolution"></span>
+                </article>
+
+                <article>
+                    <h3>Nombre de requêtes</h3>
+                    <strong id="request-count"></strong>
+                    <span id="request-evolution"></span>
+                </article>
+
+                <article>
+                    <h3>Nombre de modèles disponibles</h3>
+                    <strong id="model-count"></strong>
+                    <span id="model-evolution"></span>
+                </article>
+
+                <article>
+                    <h3>Utilisateurs actifs</h3>
+                    <strong id="user-count"></strong>
+                    <span id="user-evolution"></span>
+                </article>
+
+                <article>
+                    <h3>Tâches exécutées</h3>
+                    <strong id="task-count"></strong>
+                    <span id="task-evolution"></span>
+                </article>
+
+            </section>
+
+            <section>
+
+                <article>
+
+                    <h3>Requêtes par jour</h3>
+
+                    <select>
+                        <option>7 derniers jours</option>
+                    </select>
+
+                    <div id="requests-chart"></div>
+
+                </article>
+
+
+                <article>
+
+                    <h3>Répartition des requêtes par service</h3>
+
+                    <div id="services-chart"></div>
+
+                </article>
+
+            </section>
+
+            <section>
+
+                <article>
+
+                    <h3>Activité récente</h3>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Activité</th>
+                                <th>Service</th>
+                                <th>Utilisateur</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="recent-activities">
+                        </tbody>
+
+                    </table>
+
+                    <a href="#">Voir tout l'historique</a>
+
+                </article>
+
+
+                <article>
+
+                    <h3>Modèles populaires</h3>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Modèle</th>
+                                <th>Utilisations</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="popular-models">
+                        </tbody>
+
+                    </table>
+
+                    <a href="#">Voir tous les modèles</a>
+
+                </article>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
