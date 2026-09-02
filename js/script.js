@@ -390,7 +390,149 @@ predictionButton.addEventListener(
 );
 
 
+// ==========================================================
+// 7. PARTIE 7 : HISTORIQUE
+// ==========================================================
 
+const historique = [];
+
+
+// Section historique
+const historiqueSection =
+    document.createElement("section");
+
+historiqueSection.id = "historique";
+
+historiqueSection.style.display = "none";
+
+const historiqueTitle =
+    document.createElement("h2");
+
+historiqueTitle.textContent =
+    "Historique";
+
+
+// Barre de recherche
+const historySearch =
+    document.createElement("input");
+
+historySearch.type = "search";
+
+historySearch.placeholder =
+    "Rechercher dans l'historique...";
+
+
+// Bouton vider
+const historyClear =
+    document.createElement("button");
+
+historyClear.textContent =
+    "Vider l'historique";
+
+
+// Zone de la liste
+const historyList =
+    document.createElement("div");
+
+
+// Ajouter les éléments
+historiqueSection.appendChild(
+    historiqueTitle
+);
+
+historiqueSection.appendChild(
+    historySearch
+);
+
+historiqueSection.appendChild(
+    historyClear
+);
+
+historiqueSection.appendChild(
+    historyList
+);
+
+
+// Ajouter dans main
+main.appendChild(
+    historiqueSection
+);
+
+
+// Fonction pour afficher l'historique
+function afficherHistorique(liste) {
+
+    historyList.innerHTML = "";
+
+
+    if (liste.length === 0) {
+
+        historyList.textContent =
+            "Aucune requête enregistrée.";
+
+        return;
+    }
+
+
+    liste.forEach(function (requete) {
+
+        const element =
+            document.createElement("p");
+
+        element.textContent =
+            requete;
+
+        historyList.appendChild(
+            element
+        );
+
+    });
+
+}
+
+
+// Affichage initial
+afficherHistorique(historique);
+
+
+// Recherche
+historySearch.addEventListener(
+    "input",
+    function () {
+
+        const recherche =
+            historySearch.value.toLowerCase();
+
+
+        const resultats =
+            historique.filter(
+                function (requete) {
+
+                    return requete
+                        .toLowerCase()
+                        .includes(recherche);
+
+                }
+            );
+
+
+        afficherHistorique(resultats);
+
+    }
+);
+
+
+// Vider l'historique
+historyClear.addEventListener(
+    "click",
+    function () {
+
+        historique.length = 0;
+
+        afficherHistorique(historique);
+
+    }
+);
 
 
 // ==========================================================
@@ -421,7 +563,7 @@ menuLinks.forEach(function (link) {
 
             predictionSection.style.display = "none";
 
-           
+            historiqueSection.style.display = "none";
 
 
             // Afficher la fonctionnalité choisie
