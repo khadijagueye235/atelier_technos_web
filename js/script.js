@@ -1,145 +1,366 @@
 
-// Récupérer la zone principale
 const main = document.querySelector("main");
 
+const menuLinks = document.querySelectorAll("nav a");
 
-// Créer une section pour le résumé
+// ==========================================================
+//  PARTIE 3 : RÉSUMÉ DE TEXTE
+// ==========================================================
+
 const resumeSection = document.createElement("section");
 
+// Donner un identifiant à la section
+resumeSection.id = "resume";
 
-// Créer le titre
+// Cacher la section au départ
+resumeSection.style.display = "none";
 const resumeTitle = document.createElement("h2");
-
 resumeTitle.textContent = "Résumé de texte";
 
-
-// Créer la zone de saisie
 const resumeInput = document.createElement("textarea");
-
 resumeInput.placeholder = "Collez votre texte ici...";
 
-
-// Créer le bouton
 const resumeButton = document.createElement("button");
-
 resumeButton.textContent = "Résumer";
 
-
-// Créer la zone d'affichage du résultat
 const resumeResult = document.createElement("div");
-
-
-// Ajouter les éléments dans la section
 resumeSection.appendChild(resumeTitle);
+
 resumeSection.appendChild(resumeInput);
+
 resumeSection.appendChild(resumeButton);
+
 resumeSection.appendChild(resumeResult);
 
 
-// Ajouter la section dans la zone principale
+// Ajouter la section dans la page
 main.appendChild(resumeSection);
 
+// Bouton Résumer
 resumeButton.addEventListener("click", function () {
 
     const texte = resumeInput.value.trim();
 
     if (texte === "") {
-        resumeResult.textContent = "Veuillez saisir un texte.";
+
+        resumeResult.textContent =
+            "Veuillez saisir un texte.";
+
         return;
     }
-
     const mots = texte.split(/\s+/);
 
-    const nombreDeMots = Math.max(1, Math.ceil(mots.length * 0.3));
+    const nombreDeMots =
+        Math.max(1, Math.ceil(mots.length * 0.3));
 
     const resume = mots
         .slice(0, nombreDeMots)
         .join(" ");
 
-    resumeResult.textContent = "Résumé : " + resume + "...";
+    resumeResult.textContent =
+        "Résumé : " + resume + "...";
+
 });
-// ==========================================
-// PARTIE 4 : TRADUCTION
-// ==========================================
 
+// ==========================================================
+//  PARTIE 4 : TRADUCTION
+// ==========================================================
 
-const traductionSection = document.createElement("section");
+const traductionSection =
+    document.createElement("section");
 
-const traductionTitle = document.createElement("h2");
+traductionSection.id = "traduction";
+
+traductionSection.style.display = "none";
+
+const traductionTitle =
+    document.createElement("h2");
 
 traductionTitle.textContent = "Traduction";
 
-const traductionInput = document.createElement("textarea");
+const traductionInput =
+    document.createElement("textarea");
 
-traductionInput.placeholder = "Écrivez le texte à traduire...";
+traductionInput.placeholder =
+    "Écrivez le texte à traduire...";
 
-const traductionLanguage = document.createElement("select");
 
-const anglais = document.createElement("option");
-anglais.value = "Anglais";
-anglais.textContent = "Anglais";
+const traductionLanguage =
+    document.createElement("select");
 
-const espagnol = document.createElement("option");
-espagnol.value = "Espagnol";
-espagnol.textContent = "Espagnol";
+const langues = [
+    "Anglais",
+    "Espagnol",
+    "Allemand",
+    "Italien",
+    "Portugais",
+    "Arabe",
+    "Chinois",
+    "Japonais"
+];
 
-const allemand = document.createElement("option");
-allemand.value = "Allemand";
-allemand.textContent = "Allemand";
-const italien = document.createElement("option");
-italien.value = "Italien";
-italien.textContent = "Italien";
-const portugais = document.createElement("option");
-portugais.value = "Portugais";
-portugais.textContent = "Portugais";
+// Créer les options
+langues.forEach(function (langue) {
 
-const arabe = document.createElement("option");
-arabe.value = "Arabe";
-arabe.textContent = "Arabe";
+    const option =
+        document.createElement("option");
 
-const chinois = document.createElement("option");
-chinois.value = "Chinois";
-chinois.textContent = "Chinois";
+    option.value = langue;
 
-const japonais = document.createElement("option");
-japonais.value = "Japonais";
-japonais.textContent = "Japonais";
-traductionLanguage.appendChild(anglais);
-traductionLanguage.appendChild(espagnol);
-traductionLanguage.appendChild(allemand);
-traductionLanguage.appendChild(italien);
-traductionLanguage.appendChild(portugais);
-traductionLanguage.appendChild(arabe);
-traductionLanguage.appendChild(chinois);
-traductionLanguage.appendChild(japonais);
+    option.textContent = langue;
 
-const traductionButton = document.createElement("button");
+    traductionLanguage.appendChild(option);
+
+});
+
+const traductionButton =
+    document.createElement("button");
 
 traductionButton.textContent = "Traduire";
 
-const traductionResult = document.createElement("div");
+// Résultat
+const traductionResult =
+    document.createElement("div");
 
-// Ajouter les éléments dans la section
 traductionSection.appendChild(traductionTitle);
+
 traductionSection.appendChild(traductionInput);
+
 traductionSection.appendChild(traductionLanguage);
+
 traductionSection.appendChild(traductionButton);
+
 traductionSection.appendChild(traductionResult);
 
-// Ajouter la section dans la zone principale
+// Ajouter dans main
 main.appendChild(traductionSection);
 
+// Bouton Traduire
 traductionButton.addEventListener("click", function () {
 
-    const texte = traductionInput.value.trim();
+    const texte =
+        traductionInput.value.trim();
+
 
     if (texte === "") {
-        traductionResult.textContent = "Veuillez saisir un texte.";
+
+        traductionResult.textContent =
+            "Veuillez saisir un texte.";
+
         return;
     }
 
-    const langue = traductionLanguage.value;
+
+    const langue =
+        traductionLanguage.value;
+
 
     traductionResult.textContent =
-        "Traduction simulée en " + langue + " : " + texte;
+        "Traduction simulée en "
+        + langue
+        + " : "
+        + texte;
+
+});
+
+
+
+
+// ==========================================================
+// PARTIE 5 : CHAT IA
+// ==========================================================
+
+const chatSection =
+    document.createElement("section");
+
+chatSection.id = "chat";
+
+chatSection.style.display = "none";
+
+
+const chatTitle =
+    document.createElement("h2");
+
+chatTitle.textContent =
+    "Chat IA";
+
+const chatMessages =
+    document.createElement("div");
+
+const chatInput =
+    document.createElement("input");
+
+chatInput.type = "text";
+
+chatInput.placeholder =
+    "Écrivez votre message...";
+
+const chatButton =
+    document.createElement("button");
+
+chatButton.textContent =
+    "Envoyer";
+
+// Ajouter les éléments
+chatSection.appendChild(chatTitle);
+
+chatSection.appendChild(chatMessages);
+
+chatSection.appendChild(chatInput);
+
+chatSection.appendChild(chatButton);
+
+// Ajouter dans main
+main.appendChild(chatSection);
+
+// Bouton Envoyer
+chatButton.addEventListener(
+    "click",
+    function () {
+
+        const message =
+            chatInput.value.trim();
+
+
+        if (message === "") {
+
+            return;
+        }
+
+
+        // Message de l'utilisateur
+        const messageUtilisateur =
+            document.createElement("p");
+
+        messageUtilisateur.textContent =
+            "Vous : " + message;
+
+
+        chatMessages.appendChild(
+            messageUtilisateur
+        );
+
+
+        // Réponse simulée de l'IA
+        const reponseIA =
+            document.createElement("p");
+
+        reponseIA.textContent =
+            "Assistant IA : Bonjour ! "
+            + "Je suis un assistant IA simulé.";
+
+
+        chatMessages.appendChild(
+            reponseIA
+        );
+
+
+        // Vider le champ
+        chatInput.value = "";
+
+    }
+);
+
+
+
+
+// ==========================================================
+// 8. NAVIGATION DU MENU
+// ==========================================================
+
+menuLinks.forEach(function (link) {
+
+    link.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+
+            // Récupérer la page demandée
+            const page =
+                link.dataset.page;
+
+
+            // Cacher les fonctionnalités
+            resumeSection.style.display = "none";
+
+            traductionSection.style.display = "none";
+
+            classificationSection.style.display = "none";
+
+            chatSection.style.display = "none";
+
+            predictionSection.style.display = "none";
+
+            historiqueSection.style.display = "none";
+
+
+            // Afficher la fonctionnalité choisie
+
+            if (page === "dashboard") {
+
+                // Pour le dashboard,
+                // on recharge la page
+                location.reload();
+
+            }
+
+
+            else if (page === "resume") {
+
+                resumeSection.style.display = "block";
+
+            }
+
+
+            else if (page === "traduction") {
+
+                traductionSection.style.display = "block";
+
+            }
+
+
+            else if (page === "classification") {
+
+                classificationSection.style.display = "block";
+
+            }
+
+
+            else if (page === "chat") {
+
+                chatSection.style.display = "block";
+
+            }
+
+
+            else if (page === "prediction") {
+
+                predictionSection.style.display = "block";
+
+            }
+
+
+            else if (page === "historique") {
+
+                historiqueSection.style.display = "block";
+
+            }
+
+
+            // Modifier le bouton actif
+
+            menuLinks.forEach(function (item) {
+
+                item.classList.remove("active");
+
+            });
+
+
+            link.classList.add("active");
+
+        }
+    );
+
 });
