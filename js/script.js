@@ -261,6 +261,135 @@ chatButton.addEventListener(
     }
 );
 
+// ==========================================================
+// PARTIE 6: PRÉDICTION
+// ==========================================================
+
+const predictionSection =
+    document.createElement("section");
+
+predictionSection.id = "prediction";
+
+predictionSection.style.display = "none";
+
+
+const predictionTitle =
+    document.createElement("h2");
+
+predictionTitle.textContent =
+    "Prédiction";
+
+
+// Âge
+const predictionAge =
+    document.createElement("input");
+
+predictionAge.type = "number";
+
+predictionAge.placeholder = "Âge";
+
+// Revenu
+const predictionRevenu =
+    document.createElement("input");
+
+predictionRevenu.type = "number";
+
+predictionRevenu.placeholder =
+    "Revenu mensuel";
+
+
+// Ville
+const predictionVille =
+    document.createElement("input");
+
+predictionVille.type = "text";
+
+predictionVille.placeholder =
+    "Ville";
+
+
+// Bouton
+const predictionButton =
+    document.createElement("button");
+
+predictionButton.textContent =
+    "Prédire";
+
+
+// Résultat
+const predictionResult =
+    document.createElement("div");
+
+
+// Ajouter les éléments
+predictionSection.appendChild(
+    predictionTitle
+);
+
+predictionSection.appendChild(
+    predictionAge
+);
+
+predictionSection.appendChild(
+    predictionRevenu
+);
+
+predictionSection.appendChild(
+    predictionVille
+);
+
+predictionSection.appendChild(
+    predictionButton
+);
+
+predictionSection.appendChild(
+    predictionResult
+);
+
+
+// Ajouter dans main
+main.appendChild(predictionSection);
+
+
+// Bouton Prédire
+predictionButton.addEventListener(
+    "click",
+    function () {
+
+        const age =
+            predictionAge.value;
+
+        const revenu =
+            predictionRevenu.value;
+
+        const ville =
+            predictionVille.value.trim();
+
+
+        if (
+            age === "" ||
+            revenu === "" ||
+            ville === ""
+        ) {
+
+            predictionResult.textContent =
+                "Veuillez remplir tous les champs.";
+
+            return;
+        }
+
+
+        predictionResult.textContent =
+            "Prédiction simulée pour une personne de "
+            + age
+            + " ans, habitant à "
+            + ville
+            + ".";
+
+    }
+);
+
+
 
 
 
@@ -287,13 +416,12 @@ menuLinks.forEach(function (link) {
 
             traductionSection.style.display = "none";
 
-            classificationSection.style.display = "none";
 
             chatSection.style.display = "none";
 
             predictionSection.style.display = "none";
 
-            historiqueSection.style.display = "none";
+           
 
 
             // Afficher la fonctionnalité choisie
