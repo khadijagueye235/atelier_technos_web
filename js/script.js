@@ -1,29 +1,43 @@
 
-const main = document.querySelector("main");
-
+// Récupérer le menu
 const menuLinks = document.querySelectorAll("nav a");
 
+// Récupérer les différentes parties du dashboard
+const dashboardSection = document.querySelector("#dashboard");
+
+// Les 3 sections qui suivent le titre du dashboard
+const dashboardStats = dashboardSection.nextElementSibling;
+const dashboardCharts = dashboardStats.nextElementSibling;
+const dashboardTables = dashboardCharts.nextElementSibling;
+
+
 // ==========================================================
-//  PARTIE 3 : RÉSUMÉ DE TEXTE
+// 2. RÉSUMÉ DE TEXTE
 // ==========================================================
 
 const resumeSection = document.createElement("section");
 
-// Donner un identifiant à la section
 resumeSection.id = "resume";
 
-// Cacher la section au départ
 resumeSection.style.display = "none";
+
 const resumeTitle = document.createElement("h2");
+
 resumeTitle.textContent = "Résumé de texte";
 
 const resumeInput = document.createElement("textarea");
+
 resumeInput.placeholder = "Collez votre texte ici...";
 
 const resumeButton = document.createElement("button");
-resumeButton.textContent = "Résumer";
+
+resumeButton.innerHTML =
+    '<i class="fa-solid fa-file-lines"></i> Résumer';
 
 const resumeResult = document.createElement("div");
+
+
+// Ajouter les éléments dans la section
 resumeSection.appendChild(resumeTitle);
 
 resumeSection.appendChild(resumeInput);
@@ -33,8 +47,11 @@ resumeSection.appendChild(resumeButton);
 resumeSection.appendChild(resumeResult);
 
 
-// Ajouter la section dans la page
+// Ajouter la section dans main
+const main = document.querySelector("main");
+
 main.appendChild(resumeSection);
+
 
 // Bouton Résumer
 resumeButton.addEventListener("click", function () {
@@ -48,6 +65,7 @@ resumeButton.addEventListener("click", function () {
 
         return;
     }
+
     const mots = texte.split(/\s+/);
 
     const nombreDeMots =
@@ -59,11 +77,11 @@ resumeButton.addEventListener("click", function () {
 
     resumeResult.textContent =
         "Résumé : " + resume + "...";
-
 });
 
+
 // ==========================================================
-//  PARTIE 4 : TRADUCTION
+// 3. TRADUCTION
 // ==========================================================
 
 const traductionSection =
@@ -73,10 +91,13 @@ traductionSection.id = "traduction";
 
 traductionSection.style.display = "none";
 
+
 const traductionTitle =
     document.createElement("h2");
 
-traductionTitle.textContent = "Traduction";
+traductionTitle.textContent =
+    "Traduction";
+
 
 const traductionInput =
     document.createElement("textarea");
@@ -88,6 +109,7 @@ traductionInput.placeholder =
 const traductionLanguage =
     document.createElement("select");
 
+
 const langues = [
     "Anglais",
     "Espagnol",
@@ -98,6 +120,7 @@ const langues = [
     "Chinois",
     "Japonais"
 ];
+
 
 // Créer les options
 langues.forEach(function (langue) {
@@ -113,61 +136,80 @@ langues.forEach(function (langue) {
 
 });
 
+
 const traductionButton =
     document.createElement("button");
 
-traductionButton.textContent = "Traduire";
+traductionButton.innerHTML =
+    '<i class="fa-solid fa-language"></i> Traduire';
 
-// Résultat
+
 const traductionResult =
     document.createElement("div");
 
-traductionSection.appendChild(traductionTitle);
 
-traductionSection.appendChild(traductionInput);
+// Ajouter les éléments
+traductionSection.appendChild(
+    traductionTitle
+);
 
-traductionSection.appendChild(traductionLanguage);
+traductionSection.appendChild(
+    traductionInput
+);
 
-traductionSection.appendChild(traductionButton);
+traductionSection.appendChild(
+    traductionLanguage
+);
 
-traductionSection.appendChild(traductionResult);
+traductionSection.appendChild(
+    traductionButton
+);
+
+traductionSection.appendChild(
+    traductionResult
+);
+
 
 // Ajouter dans main
-main.appendChild(traductionSection);
+main.appendChild(
+    traductionSection
+);
+
 
 // Bouton Traduire
-traductionButton.addEventListener("click", function () {
+traductionButton.addEventListener(
+    "click",
+    function () {
 
-    const texte =
-        traductionInput.value.trim();
+        const texte =
+            traductionInput.value.trim();
 
 
-    if (texte === "") {
+        if (texte === "") {
+
+            traductionResult.textContent =
+                "Veuillez saisir un texte.";
+
+            return;
+        }
+
+
+        const langue =
+            traductionLanguage.value;
+
 
         traductionResult.textContent =
-            "Veuillez saisir un texte.";
+            "Traduction simulée en "
+            + langue
+            + " : "
+            + texte;
 
-        return;
     }
-
-
-    const langue =
-        traductionLanguage.value;
-
-
-    traductionResult.textContent =
-        "Traduction simulée en "
-        + langue
-        + " : "
-        + texte;
-
-});
-
-
+);
 
 
 // ==========================================================
-// PARTIE 5 : CHAT IA
+// 4. CHAT IA
 // ==========================================================
 
 const chatSection =
@@ -184,8 +226,10 @@ const chatTitle =
 chatTitle.textContent =
     "Chat IA";
 
+
 const chatMessages =
     document.createElement("div");
+
 
 const chatInput =
     document.createElement("input");
@@ -195,23 +239,37 @@ chatInput.type = "text";
 chatInput.placeholder =
     "Écrivez votre message...";
 
+
 const chatButton =
     document.createElement("button");
 
-chatButton.textContent =
-    "Envoyer";
+chatButton.innerHTML =
+    '<i class="fa-solid fa-paper-plane"></i> Envoyer';
+
 
 // Ajouter les éléments
-chatSection.appendChild(chatTitle);
+chatSection.appendChild(
+    chatTitle
+);
 
-chatSection.appendChild(chatMessages);
+chatSection.appendChild(
+    chatMessages
+);
 
-chatSection.appendChild(chatInput);
+chatSection.appendChild(
+    chatInput
+);
 
-chatSection.appendChild(chatButton);
+chatSection.appendChild(
+    chatButton
+);
+
 
 // Ajouter dans main
-main.appendChild(chatSection);
+main.appendChild(
+    chatSection
+);
+
 
 // Bouton Envoyer
 chatButton.addEventListener(
@@ -228,7 +286,7 @@ chatButton.addEventListener(
         }
 
 
-        // Message de l'utilisateur
+        // Message utilisateur
         const messageUtilisateur =
             document.createElement("p");
 
@@ -261,8 +319,9 @@ chatButton.addEventListener(
     }
 );
 
+
 // ==========================================================
-// PARTIE 6: PRÉDICTION
+// 5. PRÉDICTION
 // ==========================================================
 
 const predictionSection =
@@ -286,7 +345,9 @@ const predictionAge =
 
 predictionAge.type = "number";
 
-predictionAge.placeholder = "Âge";
+predictionAge.placeholder =
+    "Âge";
+
 
 // Revenu
 const predictionRevenu =
@@ -312,8 +373,8 @@ predictionVille.placeholder =
 const predictionButton =
     document.createElement("button");
 
-predictionButton.textContent =
-    "Prédire";
+predictionButton.innerHTML =
+    '<i class="fa-solid fa-chart-line"></i> Prédire';
 
 
 // Résultat
@@ -348,7 +409,9 @@ predictionSection.appendChild(
 
 
 // Ajouter dans main
-main.appendChild(predictionSection);
+main.appendChild(
+    predictionSection
+);
 
 
 // Bouton Prédire
@@ -391,19 +454,19 @@ predictionButton.addEventListener(
 
 
 // ==========================================================
-// 7. PARTIE 7 : HISTORIQUE
+// 6. HISTORIQUE
 // ==========================================================
 
 const historique = [];
 
 
-// Section historique
 const historiqueSection =
     document.createElement("section");
 
 historiqueSection.id = "historique";
 
 historiqueSection.style.display = "none";
+
 
 const historiqueTitle =
     document.createElement("h2");
@@ -426,8 +489,8 @@ historySearch.placeholder =
 const historyClear =
     document.createElement("button");
 
-historyClear.textContent =
-    "Vider l'historique";
+historyClear.innerHTML =
+    '<i class="fa-solid fa-trash"></i> Vider l’historique';
 
 
 // Zone de la liste
@@ -536,7 +599,60 @@ historyClear.addEventListener(
 
 
 // ==========================================================
-// 8. NAVIGATION DU MENU
+// 7. CACHER TOUTES LES SECTIONS
+// ==========================================================
+
+function cacherToutesLesSections() {
+
+    // -------------------------------
+    // Cacher tout le dashboard
+    // -------------------------------
+
+    dashboardSection.style.display = "none";
+
+    dashboardStats.style.display = "none";
+
+    dashboardCharts.style.display = "none";
+
+    dashboardTables.style.display = "none";
+
+
+    // -------------------------------
+    // Cacher les fonctionnalités
+    // -------------------------------
+
+    resumeSection.style.display = "none";
+
+    traductionSection.style.display = "none";
+
+    chatSection.style.display = "none";
+
+    predictionSection.style.display = "none";
+
+    historiqueSection.style.display = "none";
+}
+
+
+// ==========================================================
+// 8. AFFICHER LE DASHBOARD
+// ==========================================================
+
+function afficherDashboard() {
+
+    dashboardSection.style.display = "block";
+
+    // IMPORTANT :
+    // On utilise grid pour respecter ton CSS
+    dashboardStats.style.display = "grid";
+
+    dashboardCharts.style.display = "grid";
+
+    dashboardTables.style.display = "grid";
+}
+
+
+// ==========================================================
+// 9. NAVIGATION DU MENU
 // ==========================================================
 
 menuLinks.forEach(function (link) {
@@ -553,73 +669,70 @@ menuLinks.forEach(function (link) {
                 link.dataset.page;
 
 
-            // Cacher les fonctionnalités
-            resumeSection.style.display = "none";
+            // ------------------------------------------
+            // ÉTAPE 1
+            // Tout cacher
+            // ------------------------------------------
 
-            traductionSection.style.display = "none";
-
-
-            chatSection.style.display = "none";
-
-            predictionSection.style.display = "none";
-
-            historiqueSection.style.display = "none";
+            cacherToutesLesSections();
 
 
-            // Afficher la fonctionnalité choisie
+            // ------------------------------------------
+            // ÉTAPE 2
+            // Afficher uniquement la page demandée
+            // ------------------------------------------
 
             if (page === "dashboard") {
 
-                // Pour le dashboard,
-                // on recharge la page
-                location.reload();
+                afficherDashboard();
 
             }
 
 
             else if (page === "resume") {
 
-                resumeSection.style.display = "block";
+                resumeSection.style.display =
+                    "block";
 
             }
 
 
             else if (page === "traduction") {
 
-                traductionSection.style.display = "block";
-
-            }
-
-
-            else if (page === "classification") {
-
-                classificationSection.style.display = "block";
+                traductionSection.style.display =
+                    "block";
 
             }
 
 
             else if (page === "chat") {
 
-                chatSection.style.display = "block";
+                chatSection.style.display =
+                    "block";
 
             }
 
 
             else if (page === "prediction") {
 
-                predictionSection.style.display = "block";
+                predictionSection.style.display =
+                    "block";
 
             }
 
 
             else if (page === "historique") {
 
-                historiqueSection.style.display = "block";
+                historiqueSection.style.display =
+                    "block";
 
             }
 
 
+            // ------------------------------------------
+            // ÉTAPE 3
             // Modifier le bouton actif
+            // ------------------------------------------
 
             menuLinks.forEach(function (item) {
 
@@ -634,3 +747,12 @@ menuLinks.forEach(function (link) {
     );
 
 });
+
+
+// ==========================================================
+// 10. AFFICHAGE INITIAL
+// ==========================================================
+
+// Au chargement, afficher le dashboard
+afficherDashboard();
+

@@ -1,295 +1,1184 @@
-/* 1. RÉINITIALISATION CSS */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+/* ============================================================
+   1. RÉINITIALISATION
+   ============================================================ */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 2. STYLE GÉNÉRAL */
-body {
-    font-family: 'Inter', Arial, sans-serif; /* Une police plus moderne */
-    background-color: #fafbfc; /* Gris très clair pour le fond (60%) */
-    color: #1e293b; /* Texte foncé doux */
+
+/* ============================================================
+   2. VARIABLES
+   ============================================================ */
+
+:root {
+
+    /* Couleurs principales */
+    --ink: #0f172a;
+    --ink-soft: #1e293b;
+
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-faint: #94a3b8;
+
+    /* Couleurs IA */
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --primary-light: #eef2ff;
+
+    --accent: #06b6d4;
+    --accent-dark: #0891b2;
+    --accent-light: #ecfeff;
+
+    /* Neutres */
+    --white: #ffffff;
+    --bg: #f8fafc;
+    --border: #e2e8f0;
+
+    /* États */
+    --success: #059669;
+    --success-bg: #ecfdf5;
+
+    /* Ombres */
+    --shadow-sm:
+        0 1px 2px rgba(15, 23, 42, 0.05);
+
+    --shadow-md:
+        0 6px 18px rgba(15, 23, 42, 0.08);
+
+    --shadow-lg:
+        0 15px 35px rgba(15, 23, 42, 0.12);
+
+    /* Rayons */
+    --radius: 14px;
+    --radius-sm: 9px;
 }
 
-/* 3. EN-TÊTE */
+
+/* ============================================================
+   3. BODY
+   ============================================================ */
+
+body {
+
+    font-family: 'Inter', Arial, sans-serif;
+
+    font-size: 14px;
+
+    color: var(--text);
+
+    -webkit-font-smoothing: antialiased;
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(252, 253, 253, 0.94),
+            rgba(23, 12, 94, 0.82),
+            rgba(40, 47, 63, 0.94)
+        ),
+        url("../images/bg.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+}
+
+
+/* ============================================================
+   4. HEADER
+   ============================================================ */
+
 header {
-    height: 58px;
-    background-color: #0f172a; /* Bleu marine foncé (30%) */
-    border-bottom: 1px solid #1e293b;
+
+    height: 68px;
+
+    background:
+        rgba(15, 23, 42, 0.94);
+
+    backdrop-filter: blur(14px);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
-    padding: 0 20px;
+    padding: 0 30px;
+
+    position: relative;
+
+    z-index: 10;
 }
+
+
+/* Logo / titre */
 
 header h1 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #ffffff;
-    text-shadow: none; /* Suppression des ombres bleues/rouges agressives */
+
+    font-size: 19px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.03em;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
 }
+
+
+/* Petit effet lumineux devant le titre */
+
+header h1::before {
+
+    content: "";
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--primary)
+        );
+
+    box-shadow:
+        0 0 12px rgba(6, 182, 212, 0.8);
+}
+
+
+/* Partie droite */
 
 header div {
+
     display: flex;
+
     align-items: center;
-    gap: 12px;
+
+    gap: 16px;
 }
+
 
 header span {
+
     font-size: 13px;
-    color: #94a3b8; /* Texte secondaire plus discret */
+
+    font-weight: 500;
+
+    color: #cbd5e1;
 }
+
+
+/* Bouton header */
 
 header button {
+
     border: none;
-    background-color: #0ea5e9; /* Bleu cyan éclatant (10% d'accent) */
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent-dark)
+        );
+
     color: white;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
+
+    padding: 9px 17px;
+
+    border-radius: 9px;
+
+    font-size: 12.5px;
+
+    font-weight: 700;
+
     cursor: pointer;
-    transition: background-color 0.2s;
+
+    box-shadow:
+        0 5px 16px rgba(6, 182, 212, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
 
 header button:hover {
-    background-color: #0284c7; /* Effet de survol sur le bouton */
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(6, 182, 212, 0.4);
 }
 
-/* 4. CONTENEUR DE L'APPLICATION */
+
+/* ============================================================
+   5. CONTENEUR APPLICATION
+   ============================================================ */
+
 body > div {
+
     display: flex;
-    min-height: calc(100vh - 58px);
+
+    min-height:
+        calc(100vh - 68px);
 }
 
-/* 5. BARRE LATÉRALE */
+
+/* ============================================================
+   6. SIDEBAR
+   ============================================================ */
+
 aside {
-    width: 220px; /* Légèrement élargi pour laisser respirer le menu */
-    background-color: #ffffff; /* Fond blanc propre */
-    border-right: 1px solid #e2e8f0; /* Bordure grise subtile */
-    padding: 24px 0;
+
+    width: 245px;
+
+    background:
+        rgba(247, 250, 250, 0.98);
+
+    backdrop-filter: blur(15px);
+
+    border-right:
+        1px solid rgba(226, 232, 240, 0.9);
+
+    padding: 30px 0;
+
+    box-shadow:
+        5px 0 25px rgba(15, 23, 42, 0.06);
+
+    flex-shrink: 0;
 }
+
+
+/* Titre sidebar */
 
 aside h2 {
-    font-size: 12px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #64748b;
-    padding: 0 20px 16px;
+
+    letter-spacing: 0.12em;
+
+    color: #94a3b8;
+
+    padding:
+        0 24px 16px;
 }
 
+
+/* Liste */
+
 nav ul {
+
     list-style: none;
 }
 
+
+/* Élément */
+
 nav li {
-    margin-bottom: 4px;
-    padding: 0 10px; /* Marges internes pour le style des boutons */
+
+    margin-bottom: 5px;
+
+    padding: 0 13px;
 }
+
+
+/* Liens */
 
 nav a {
-    display: block;
-    padding: 10px 14px;
-    border-radius: 6px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding:
+        11px 14px;
+
+    border-radius:
+        10px;
+
     text-decoration: none;
-    color: #475569;
-    font-size: 13px;
-    font-weight: 500;
-    transition: all 0.2s;
+
+    color: #64748b;
+
+    font-size: 13.5px;
+
+    font-weight: 600;
+
+    transition:
+        all 0.2s ease;
+
+    position: relative;
 }
+
+
+/* Icônes Font Awesome */
+
+nav a i {
+
+    width: 19px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    color: #94a3b8;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Hover */
 
 nav a:hover {
-    background-color: #f1f5f9;
-    color: #0f172a;
+
+    background:
+        white;
+
+    color:
+        var(--ink);
+
+    transform:
+        translateX(3px);
 }
+
+
+nav a:hover i {
+
+    color:
+        var(--primary);
+
+    transform:
+        scale(1.08);
+}
+
+
+/* Élément actif */
 
 nav a.active {
-    background-color: #e0f2fe; /* Fond bleu très clair */
-    color: #0284c7; /* Texte bleu accent */
-    font-weight: 600;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+
+    color:
+        white;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 6px 16px rgba(79, 70, 229, 0.28);
 }
 
-/* 6. ZONE PRINCIPALE */
+
+/* Icône actif */
+
+nav a.active i {
+
+    color:
+        white;
+}
+
+
+/* Petite barre lumineuse */
+
+nav a.active::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -13px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    width: 3px;
+
+    height: 24px;
+
+    border-radius:
+        0 5px 5px 0;
+
+    background:
+        var(--accent);
+
+    box-shadow:
+        0 0 10px rgba(6, 182, 212, 0.7);
+}
+
+
+/* ============================================================
+   7. ZONE PRINCIPALE
+   ============================================================ */
+
 main {
+
     flex: 1;
-    padding: 28px;
-    overflow: auto;
+
+    padding:
+        36px 38px;
+
+    overflow:
+        auto;
+
+    min-width: 0;
 }
 
-/* 7. TITRE DU TABLEAU DE BORD */
+
+/* ============================================================
+   8. TITRE DASHBOARD
+   ============================================================ */
+
 main > section:first-child {
-    margin-bottom: 24px;
+
+    margin-bottom:
+        30px;
+
+    animation:
+        fadeIn 0.5s ease;
 }
+
 
 main > section:first-child h2 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 4px;
+
+    font-size:
+        27px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.035em;
+
+    color:
+        #ffffff;
+
+    margin-bottom:
+        7px;
+
+    text-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.35);
 }
+
 
 main > section:first-child p {
-    font-size: 13px;
-    color: #64748b;
+
+    font-size:
+        13.5px;
+
+    font-weight:
+        500;
+
+    color:
+        #cbd5e1;
+
+    line-height:
+        1.6;
+
+    text-shadow:
+        0 1px 6px rgba(0, 0, 0, 0.25);
 }
 
-/* Cartes statistiques (Grid 5 colonnes) */
+
+/* ============================================================
+   9. CARTES STATISTIQUES
+   ============================================================ */
+
 main > section:nth-child(2) {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    margin-bottom: 20px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap:
+        17px;
+
+    margin-bottom:
+        24px;
 }
+
 
 main > section:nth-child(2) article {
-    background-color: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 18px;
-    min-height: 90px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Légère ombre de relief */
+
+    background:
+        rgba(255, 255, 255, 0.98);
+
+    border:
+        1px solid rgba(226, 232, 240, 0.9);
+
+    border-radius:
+        var(--radius);
+
+    padding:
+        21px;
+
+    min-height:
+        105px;
+
+    box-shadow:
+        var(--shadow-md);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
 }
+
+
+/* Petite lumière */
+
+main > section:nth-child(2) article::after {
+
+    content: "";
+
+    position:
+        absolute;
+
+    width:
+        70px;
+
+    height:
+        70px;
+
+    right:
+        -25px;
+
+    top:
+        -25px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(79, 70, 229, 0.08);
+}
+
+
+main > section:nth-child(2) article:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
 
 main > section:nth-child(2) h3 {
-    font-size: 12px;
-    font-weight: 500;
-    color: #64748b;
-    margin-bottom: 8px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--text-muted);
+
+    margin-bottom:
+        9px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.04em;
 }
+
 
 main > section:nth-child(2) strong {
-    display: block;
-    font-size: 24px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 6px;
+
+    display:
+        block;
+
+    font-size:
+        27px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.03em;
+
+    color:
+        var(--ink);
+
+    margin-bottom:
+        9px;
 }
+
 
 main > section:nth-child(2) span {
-    font-size: 11px;
-    font-weight: 500;
-    color: #0ea5e9;
+
+    display:
+        inline-block;
+
+    font-size:
+        10.5px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--success);
+
+    background:
+        var(--success-bg);
+
+    padding:
+        4px 9px;
+
+    border-radius:
+        999px;
 }
 
-/* Sections des graphiques */
+
+/* ============================================================
+   10. GRAPHIQUES
+   ============================================================ */
+
 main > section:nth-child(3) {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.2fr 1fr;
+
+    gap:
+        18px;
+
+    margin-bottom:
+        24px;
 }
+
 
 main > section:nth-child(3) article {
-    background-color: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 18px;
-    min-height: 200px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+    background:
+        rgba(255, 255, 255, 0.98);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    padding:
+        21px;
+
+    min-height:
+        215px;
+
+    box-shadow:
+        var(--shadow-md);
+
+    transition:
+        box-shadow 0.2s ease;
 }
+
+
+main > section:nth-child(3) article:hover {
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
 
 main > section:nth-child(3) article:first-child > div:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        15px;
 }
+
 
 main > section:nth-child(3) h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #0f172a;
+
+    font-size:
+        14.5px;
+
+    font-weight:
+        750;
+
+    color:
+        var(--ink);
 }
 
+
+/* Select */
+
 main > section:nth-child(3) select {
-    font-size: 12px;
-    padding: 6px 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    background-color: white;
-    color: #334155;
-    outline: none;
+
+    font-size:
+        11.5px;
+
+    font-weight:
+        600;
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-sm);
+
+    background:
+        white;
+
+    color:
+        #334155;
+
+    outline:
+        none;
+
+    cursor:
+        pointer;
+
+    transition:
+        border 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
+
+main > section:nth-child(3) select:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+
+/* Zone graphique */
 
 #requests-chart,
 #services-chart {
-    min-height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #94a3b8;
-    font-size: 12px;
-    background-color: #f8fafc;
-    border-radius: 6px;
-    border: 1px dashed #e2e8f0;
+
+    min-height:
+        155px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        var(--text-faint);
+
+    font-size:
+        12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #f1f5f9
+        );
+
+    border-radius:
+        var(--radius-sm);
+
+    border:
+        1px dashed #cbd5e1;
+
+    overflow:
+        hidden;
 }
 
-/* Section Tableaux */
-main > section:nth-child(4) {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 16px;
+
+#requests-chart img,
+#services-chart img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
 }
+
+
+/* ============================================================
+   11. TABLEAUX
+   ============================================================ */
+
+main > section:nth-child(4) {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.4fr 1fr;
+
+    gap:
+        18px;
+}
+
 
 main > section:nth-child(4) article {
-    background-color: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 18px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+    background:
+        rgba(255, 255, 255, 0.98);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    padding:
+        21px;
+
+    box-shadow:
+        var(--shadow-md);
 }
+
 
 main > section:nth-child(4) h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #0f172a;
-    margin-bottom: 16px;
+
+    font-size:
+        14.5px;
+
+    font-weight:
+        750;
+
+    color:
+        var(--ink);
+
+    margin-bottom:
+        18px;
 }
+
+
+/* ============================================================
+   12. TABLE
+   ============================================================ */
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+
+    width:
+        100%;
+
+    border-collapse:
+        collapse;
 }
+
 
 th {
-    text-align: left;
-    font-size: 11px;
-    font-weight: 600;
-    color: #64748b;
-    padding: 10px 8px;
-    border-bottom: 2px solid #edf2f7;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+
+    text-align:
+        left;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    color:
+        var(--text-muted);
+
+    padding:
+        10px 8px;
+
+    border-bottom:
+        2px solid #edf2f7;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.07em;
 }
+
 
 td {
-    font-size: 13px;
-    color: #334155;
-    padding: 12px 8px;
-    border-bottom: 1px solid #f1f5f9;
+
+    font-size:
+        12.5px;
+
+    font-weight:
+        500;
+
+    color:
+        #334155;
+
+    padding:
+        13px 8px;
+
+    border-bottom:
+        1px solid #f1f5f9;
 }
+
+
+tbody tr {
+
+    transition:
+        background-color 0.15s ease;
+}
+
+
+tbody tr:hover {
+
+    background:
+        #f8fafc;
+}
+
 
 tbody:empty::after {
-    content: "Aucune donnée disponible";
-    display: table-row;
-    color: #94a3b8;
-    font-size: 13px;
+
+    content:
+        "Aucune donnée disponible";
+
+    display:
+        table-row;
+
+    color:
+        var(--text-faint);
+
+    font-size:
+        13px;
 }
+
+
+/* ============================================================
+   13. LIENS
+   ============================================================ */
 
 main article > a {
-    display: block;
-    text-align: right;
-    margin-top: 14px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #0ea5e9;
-    text-decoration: none;
+
+    display:
+        block;
+
+    text-align:
+        right;
+
+    margin-top:
+        16px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--accent-dark);
+
+    text-decoration:
+        none;
+
+    transition:
+        color 0.2s ease;
 }
 
+
 main article > a:hover {
-    color: #0284c7;
-    text-decoration: underline;
+
+    color:
+        var(--primary);
+
+    text-decoration:
+        none;
 }
+
+
+/* ============================================================
+   14. ANIMATION
+   ============================================================ */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* ============================================================
+   15. RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1200px) {
+
+    main > section:nth-child(2) {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    main > section:nth-child(3),
+    main > section:nth-child(4) {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+@media (max-width: 850px) {
+
+    aside {
+
+        width:
+            200px;
+    }
+
+    main {
+
+        padding:
+            28px 22px;
+    }
+
+    main > section:nth-child(2) {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    header {
+
+        padding:
+            0 16px;
+    }
+
+    header span {
+
+        display:
+            none;
+    }
+
+    aside {
+
+        width:
+            70px;
+    }
+
+    aside h2 {
+
+        display:
+            none;
+    }
+
+    nav li {
+
+        padding:
+            0 8px;
+    }
+
+    nav a {
+
+        justify-content:
+            center;
+
+        padding:
+            12px;
+    }
+
+    nav a span {
+
+        display:
+            none;
+    }
+
+    nav a i {
+
+        font-size:
+            17px;
+    }
+
+    main {
+
+        padding:
+            24px 16px;
+    }
+
+    main > section:nth-child(2) {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
